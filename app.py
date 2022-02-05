@@ -7,14 +7,20 @@ from streamlit_drawable_canvas import st_canvas
 
 model = load_model('bhdd.h5')
 
-st.title('Burmese Handwritten Digit Recognizer')
-st.markdown('''Write a digit!''')
+st.title('Burmese Digit Recognizer')
+st.markdown('''
+Try to write a digit!
+''')
+
+# data = np.random.rand(28,28)
+# img = cv2.resize(data, (256, 256), interpolation=cv2.INTER_NEAREST)
+
 SIZE = 192
 mode = st.checkbox("Draw (or Delete)?", True)
 canvas_result = st_canvas(
     fill_color='#000000',
     stroke_width=20,
-    stroke_color='#fffff',
+    stroke_color='#FFFFFF',
     background_color='#000000',
     width=SIZE,
     height=SIZE,
@@ -23,12 +29,12 @@ canvas_result = st_canvas(
 
 if canvas_result.image_data is not None:
     img = cv2.resize(canvas_result.image_data.astype('uint8'), (28, 28))
-    img_rescaling = cv2.resize(img, (SIZE, SIZE), interpolation=cv2.INTER_NEAREST)
-    st.write('Input Image')
-    st.image(img_rescaling)
+    rescaled = cv2.resize(img, (SIZE, SIZE), interpolation=cv2.INTER_NEAREST)
+    st.write('Model Input')
+    st.image(rescaled)
 
 if st.button('Predict'):
-    x_test = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    pred = model.predict(test_x.reshape(1, 28, 28, 1))
-    st.write(f'result: {np.argmax(pred[0])}')
-    st.bar_chart(pref[0])
+    test_x = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    val = model.predict(test_x.reshape(1,28,28,1))
+    st.write(f'result: {np.argmax(val[0])}')
+    st.bar_chart(val[0])
