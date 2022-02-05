@@ -18,7 +18,8 @@ canvas_result = st_canvas(
     background_color='#000000',
     width=SIZE,
     height=SIZE,
-    drawing_mode="freedraw" if drawing_mode else "transform",
+    drawing_mode="freedraw", 
+    #if drawing_mode else "transform",
     key='canvas')
 
 if canvas_result.image_data is not None:
