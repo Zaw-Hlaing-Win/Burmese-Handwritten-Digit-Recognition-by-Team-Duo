@@ -10,7 +10,7 @@ model = load_model('bhdd.h5')
 st.title('Burmese Handwritten Digit Recognizer')
 st.markdown('''Write a digit!''')
 SIZE = 192
-
+mode = st.checkbox("Draw (or Delete)?", True)
 canvas_result = st_canvas(
     fill_color='#ffffff',
     stroke_width=10,
@@ -18,8 +18,7 @@ canvas_result = st_canvas(
     background_color='#000000',
     width=SIZE,
     height=SIZE,
-    drawing_mode="freedraw", 
-    #if drawing_mode else "transform",
+    drawing_mode="freedraw" if mode else "transform",
     key='canvas')
 
 if canvas_result.image_data is not None:
