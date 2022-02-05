@@ -12,7 +12,7 @@ st.markdown('''Write a digit!''')
 SIZE = 192
 mode = st.checkbox("Draw (or Delete)?", True)
 canvas_result = st_canvas(
-    fill_color='#ffffff',
+    fill_color='#000000',
     stroke_width=10,
     stroke_color='#fffff',
     background_color='#000000',
