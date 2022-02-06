@@ -7,9 +7,9 @@ from streamlit_drawable_canvas import st_canvas
 
 model = load_model('bhdd.h5')
 
-st.title('Burmese Digit Recognizer')
+st.title('Burmese Handwritten Digit Recognizer')
 st.markdown('''
-Try to write a digit!
+Write a digit!
 ''')
 
 # data = np.random.rand(28,28)
